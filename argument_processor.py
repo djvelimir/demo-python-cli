@@ -5,17 +5,21 @@ from terminal_base import TerminalBase
 
 
 class ArgumentProcessor(ArgumentProcessorBase):
+    __argument_validator: ArgumentValidatorBase = None
+    __password_generator: PasswordGeneratorBase = None
+    __terminal: TerminalBase = None
+
     def __init__(self,
                  argument_validator: ArgumentValidatorBase,
                  password_generator: PasswordGeneratorBase,
                  terminal: TerminalBase) -> None:
-        self.argument_validator = argument_validator
-        self.password_generator = password_generator
-        self.terminal = terminal
+        self.__argument_validator = argument_validator
+        self.__password_generator = password_generator
+        self.__terminal = terminal
 
     def process(self, argv: list[str]) -> None:
-        if self.argument_validator.validate(argv):
-            password = self.password_generator.generate()
-            self.terminal.show(password)
+        if self.__argument_validator.validate(argv):
+            password = self.__password_generator.generate()
+            self.__terminal.show(password)
         else:
-            self.terminal.show('Usage:\npython ./main.py generate password')
+            self.__terminal.show('Usage:\npython ./main.py generate password')
