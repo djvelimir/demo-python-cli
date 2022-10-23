@@ -1,0 +1,52 @@
+@startuml class
+abstract class ProgramBase {
+    + {abstract} start(args: string[], length: int)
+}
+
+class Program {
+    - argumentProcessor: ArgumentProcessorBase
+}
+
+abstract class ArgumentValidatorBase {
+    + {abstract} validate(args: string[], length: int): boolean
+}
+
+class ArgumentValidator {
+}
+
+abstract class ArgumentProcessorBase {
+    + {abstract} process(args: string[], length: int)
+}
+
+class ArgumentProcessor {
+    - argumentValidator: ArgumentValidatorBase
+    - passwordGenerator: PasswordGeneratorBase
+    - terminal: TerminalBase
+}
+
+abstract class TerminalBase {
+    + {abstract} show(message: string)
+}
+
+class Terminal {
+}
+
+abstract class PasswordGeneratorBase {
+    + {abstract} generate(): string
+}
+
+class PasswordGenerator {
+}
+
+ArgumentValidatorBase <|-- ArgumentValidator
+ArgumentProcessorBase <|-- ArgumentProcessor
+TerminalBase <|-- Terminal
+PasswordGeneratorBase <|-- PasswordGenerator
+ProgramBase <|-- Program
+
+Program *--l ArgumentProcessorBase
+
+ArgumentProcessor *--l ArgumentValidatorBase
+ArgumentProcessor *--d PasswordGeneratorBase
+ArgumentProcessor *--r TerminalBase
+@enduml

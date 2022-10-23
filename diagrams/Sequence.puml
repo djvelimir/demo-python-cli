@@ -1,0 +1,38 @@
+@startuml Sequence
+participant Program as program
+participant ArgumentProcessor as argumentProcessor
+participant ArgumentValidator as argumentValidator
+participant PasswordGenerator as passwordGenerator
+participant Terminal as terminal
+
+activate program
+
+program -> argumentProcessor: process(argv)
+activate argumentProcessor
+
+argumentProcessor -> argumentValidator: validate(argv)
+activate argumentValidator
+argumentProcessor <-- argumentValidator: return are arguments valid
+deactivate argumentValidator
+
+alt#Gold #LightBlue Arguments are valid
+    argumentProcessor -> passwordGenerator: generate()
+    activate passwordGenerator
+    argumentProcessor <-- passwordGenerator: return password
+    deactivate passwordGenerator
+
+    argumentProcessor -> terminal: show(password)
+    activate terminal
+    argumentProcessor <-- terminal
+    deactivate terminal
+
+else #Pink Arguments are not valid
+    argumentProcessor -> terminal: show(usage)
+    activate terminal
+    argumentProcessor <-- terminal
+    deactivate terminal
+end
+
+program <-- argumentProcessor
+deactivate argumentProcessor
+@enduml
