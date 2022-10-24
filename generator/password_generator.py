@@ -18,26 +18,28 @@ class PasswordGenerator(PasswordGeneratorBase):
         password: str = ''
 
         # generate at least one uppercase character
-        password = password + self.__generate_random_character(self.__UPPERCASE_CHARACTERS)
+        password = password + self.__get_random_character(self.__UPPERCASE_CHARACTERS)
 
         # generate at least one lowercase character
-        password = password + self.__generate_random_character(self.__LOWERCASE_CHARACTERS)
+        password = password + self.__get_random_character(self.__LOWERCASE_CHARACTERS)
 
         # generate at least one digit character
-        password = password + self.__generate_random_character(self.__DIGIT_CHARACTERS)
+        password = password + self.__get_random_character(self.__DIGIT_CHARACTERS)
 
         # generate at least one special character
-        password = password + self.__generate_random_character(self.__SPECIAL_CHARACTERS)
+        password = password + self.__get_random_character(self.__SPECIAL_CHARACTERS)
 
         for i in range(4, self.__PASSWORD_LENGTH):
             # generate random character from union of allowed characters
-            password = password + self.__generate_random_character(self.__UNION_OF_ALLOWED_CHARACTERS)
+            password = password + self.__get_random_character(self.__UNION_OF_ALLOWED_CHARACTERS)
 
-        # shuffle generated characters
-        password = ''.join(random.sample(password, len(password)))
-
-        return password
+        # return shuffled generated characters
+        return self.__shuffle(password)
 
     @staticmethod
-    def __generate_random_character(characters: str) -> str:
+    def __get_random_character(characters: str) -> str:
         return characters[random.randint(0, len(characters) - 1)]
+
+    @staticmethod
+    def __shuffle(characters: str) -> str:
+        return ''.join(random.sample(characters, len(characters)))
