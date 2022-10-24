@@ -17,8 +17,8 @@ class ArgumentProcessor(ArgumentProcessorBase):
         self.__password_generator = password_generator
         self.__terminal = terminal
 
-    def process(self, argv: list[str]) -> None:
-        if self.__argument_validator.validate(argv):
+    def process(self, args: list[str]) -> None:
+        if self.__argument_validator.validate(args):
             password = self.__password_generator.generate()
             self.__terminal.show(password)
         else:

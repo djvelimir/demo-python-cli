@@ -7,10 +7,10 @@ participant Terminal as terminal
 
 activate program
 
-program -> argumentProcessor: process(argv)
+program -> argumentProcessor: process(args)
 activate argumentProcessor
 
-argumentProcessor -> argumentValidator: validate(argv)
+argumentProcessor -> argumentValidator: validate(args)
 activate argumentValidator
 argumentProcessor <-- argumentValidator: return are arguments valid
 deactivate argumentValidator

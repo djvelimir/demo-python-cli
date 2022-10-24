@@ -4,5 +4,5 @@ from abc import ABC, abstractmethod
 class ProgramBase(ABC):
 
     @abstractmethod
-    def start(self, argv: list[str]) -> None:
+    def start(self, args: list[str]) -> None:
         pass

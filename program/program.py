@@ -8,5 +8,5 @@ class Program(ProgramBase):
     def __init__(self, argument_processor: ArgumentProcessorBase) -> None:
         self.__argument_processor = argument_processor
 
-    def start(self, argv: list[str]) -> None:
-        self.__argument_processor.process(argv)
+    def start(self, args: list[str]) -> None:
+        self.__argument_processor.process(args)

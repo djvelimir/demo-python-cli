@@ -2,5 +2,5 @@ from validator.argument_validator_base import ArgumentValidatorBase
 
 
 class ArgumentValidator(ArgumentValidatorBase):
-    def validate(self, argv: list[str]) -> bool:
-        return len(argv) != 0 and len(argv) == 3 and argv[1] == 'generate' and argv[2] == 'password'
+    def validate(self, args: list[str]) -> bool:
+        return len(args) != 0 and len(args) == 3 and args[1] == 'generate' and args[2] == 'password'

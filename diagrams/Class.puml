@@ -1,6 +1,6 @@
 @startuml class
 abstract class ProgramBase {
-    + {abstract} start(args: string[], length: int)
+    + {abstract} start(args: string[])
 }
 
 class Program {
@@ -8,14 +8,14 @@ class Program {
 }
 
 abstract class ArgumentValidatorBase {
-    + {abstract} validate(args: string[], length: int): boolean
+    + {abstract} validate(args: string[]): boolean
 }
 
 class ArgumentValidator {
 }
 
 abstract class ArgumentProcessorBase {
-    + {abstract} process(args: string[], length: int)
+    + {abstract} process(args: string[])
 }
 
 class ArgumentProcessor {

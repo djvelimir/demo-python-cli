@@ -11,14 +11,14 @@ from program.program_base import ProgramBase
 from program.program import Program
 
 
-def main(argv: list[str]) -> None:
+def main(args: list[str]) -> None:
     argument_validator: ArgumentValidatorBase = ArgumentValidator()
     password_generator: PasswordGeneratorBase = PasswordGenerator()
     terminal: TerminalBase = Terminal()
     argument_processor: ArgumentProcessorBase = ArgumentProcessor(argument_validator, password_generator, terminal)
 
     program: ProgramBase = Program(argument_processor)
-    program.start(argv)
+    program.start(args)
 
 
 if __name__ == '__main__':
