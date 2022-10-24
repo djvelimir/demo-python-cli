@@ -1,5 +1,5 @@
-from program_base import ProgramBase
-from argument_processor_base import ArgumentProcessorBase
+from program.program_base import ProgramBase
+from processor.argument_processor_base import ArgumentProcessorBase
 
 
 class Program(ProgramBase):

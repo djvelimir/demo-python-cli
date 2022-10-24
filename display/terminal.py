@@ -1,4 +1,4 @@
-from terminal_base import TerminalBase
+from display.terminal_base import TerminalBase
 
 
 class Terminal(TerminalBase):
