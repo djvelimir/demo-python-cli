@@ -1,4 +1,4 @@
-from validator.argument_validator_base import ArgumentValidatorBase
+from src.validator.argument_validator_base import ArgumentValidatorBase
 
 
 class ArgumentValidator(ArgumentValidatorBase):

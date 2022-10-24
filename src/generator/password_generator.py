@@ -1,5 +1,5 @@
 import random
-from generator.password_generator_base import PasswordGeneratorBase
+from src.generator.password_generator_base import PasswordGeneratorBase
 
 
 class PasswordGenerator(PasswordGeneratorBase):
