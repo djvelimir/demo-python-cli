@@ -1,6 +1,6 @@
 @startuml class
 abstract class ProgramBase {
-    + {abstract} start(args: string[])
+    + {abstract} start(args: str[])
 }
 
 class Program {
@@ -8,14 +8,14 @@ class Program {
 }
 
 abstract class ArgumentValidatorBase {
-    + {abstract} validate(args: string[]): boolean
+    + {abstract} validate(args: str[]): boolean
 }
 
 class ArgumentValidator {
 }
 
 abstract class ArgumentProcessorBase {
-    + {abstract} process(args: string[])
+    + {abstract} process(args: str[])
 }
 
 class ArgumentProcessor {
@@ -25,14 +25,14 @@ class ArgumentProcessor {
 }
 
 abstract class TerminalBase {
-    + {abstract} show(message: string)
+    + {abstract} show(message: str)
 }
 
 class Terminal {
 }
 
 abstract class PasswordGeneratorBase {
-    + {abstract} generate(): string
+    + {abstract} generate(): str
 }
 
 class PasswordGenerator {
@@ -42,23 +42,23 @@ class PasswordGenerator {
 }
 
 abstract class RandomCharacterGeneratorBase {
-    + {abstract} generate_uppercase_character(): char
-    + {abstract} generate_lowercase_character(): char
-    + {abstract} generate_digit_character(): char
-    + {abstract} generate_special_character(): char
-    + {abstract} generate_allowed_character(): char
+    + {abstract} generate_uppercase_character(): str
+    + {abstract} generate_lowercase_character(): str
+    + {abstract} generate_digit_character(): str
+    + {abstract} generate_special_character(): str
+    + {abstract} generate_allowed_character(): str
 }
 
 class RandomCharacterGenerator {
-    - __uppercase_characters: String
-    - __lowercase_characters: String
-    - __digit_characters: String
-    - __special_characters: String
-    - __allowed_characters: String
+    - __uppercase_characters: str
+    - __lowercase_characters: str
+    - __digit_characters: str
+    - __special_characters: str
+    - __allowed_characters: str
 }
 
 abstract class StringShufflerBase {
-    + {abstract} shuffle(characters: String): String
+    + {abstract} shuffle(characters: str): str
 }
 
 class StringShuffler {
