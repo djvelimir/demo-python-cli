@@ -4,7 +4,7 @@ abstract class ProgramBase {
 }
 
 class Program {
-    - argumentProcessor: ArgumentProcessorBase
+    - __argument_processor: ArgumentProcessorBase
 }
 
 abstract class ArgumentValidatorBase {
@@ -19,9 +19,9 @@ abstract class ArgumentProcessorBase {
 }
 
 class ArgumentProcessor {
-    - argumentValidator: ArgumentValidatorBase
-    - passwordGenerator: PasswordGeneratorBase
-    - terminal: TerminalBase
+    - __argument_validator: ArgumentValidatorBase
+    - __password_generator: PasswordGeneratorBase
+    - __terminal: TerminalBase
 }
 
 abstract class TerminalBase {
@@ -36,12 +36,40 @@ abstract class PasswordGeneratorBase {
 }
 
 class PasswordGenerator {
+    - __password_length: int
+    - __random_character_generator: RandomCharacterGenerator
+    - __string_shuffler: StringShuffler
+}
+
+abstract class RandomCharacterGeneratorBase {
+    + {abstract} generate_uppercase_character(): char
+    + {abstract} generate_lowercase_character(): char
+    + {abstract} generate_digit_character(): char
+    + {abstract} generate_special_character(): char
+    + {abstract} generate_allowed_character(): char
+}
+
+class RandomCharacterGenerator {
+    - __uppercase_characters: String
+    - __lowercase_characters: String
+    - __digit_characters: String
+    - __special_characters: String
+    - __allowed_characters: String
+}
+
+abstract class StringShufflerBase {
+    + {abstract} shuffle(characters: String): String
+}
+
+class StringShuffler {
 }
 
 ArgumentValidatorBase <|-- ArgumentValidator
 ArgumentProcessorBase <|-- ArgumentProcessor
 TerminalBase <|-- Terminal
 PasswordGeneratorBase <|-- PasswordGenerator
+RandomCharacterGeneratorBase <|-- RandomCharacterGenerator
+StringShufflerBase <|-- StringShuffler
 ProgramBase <|-- Program
 
 Program *--l ArgumentProcessorBase
@@ -49,4 +77,7 @@ Program *--l ArgumentProcessorBase
 ArgumentProcessor *--l ArgumentValidatorBase
 ArgumentProcessor *--d PasswordGeneratorBase
 ArgumentProcessor *--r TerminalBase
+
+PasswordGenerator *--l RandomCharacterGeneratorBase
+PasswordGenerator *--r StringShufflerBase
 @enduml

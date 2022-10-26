@@ -1,19 +1,26 @@
 import sys
-from validator.argument_validator_base import ArgumentValidatorBase
-from validator.argument_validator import ArgumentValidator
-from generator.password_generator_base import PasswordGeneratorBase
-from generator.password_generator import PasswordGenerator
-from display.terminal_base import TerminalBase
+
 from display.terminal import Terminal
-from processor.argument_processor_base import ArgumentProcessorBase
+from display.terminal_base import TerminalBase
+from generator.password_generator import PasswordGenerator
+from generator.password_generator_base import PasswordGeneratorBase
+from generator.random_character_generator import RandomCharacterGenerator
+from generator.random_character_generator_base import RandomCharacterGeneratorBase
 from processor.argument_processor import ArgumentProcessor
-from program.program_base import ProgramBase
+from processor.argument_processor_base import ArgumentProcessorBase
 from program.program import Program
+from program.program_base import ProgramBase
+from shuffler.string_shuffler import StringShuffler
+from shuffler.string_shuffler_base import StringShufflerBase
+from validator.argument_validator import ArgumentValidator
+from validator.argument_validator_base import ArgumentValidatorBase
 
 
 def main(args: list[str]) -> None:
     argument_validator: ArgumentValidatorBase = ArgumentValidator()
-    password_generator: PasswordGeneratorBase = PasswordGenerator()
+    string_shuffler: StringShufflerBase = StringShuffler()
+    random_character_generator: RandomCharacterGeneratorBase = RandomCharacterGenerator()
+    password_generator: PasswordGeneratorBase = PasswordGenerator(random_character_generator, string_shuffler)
     terminal: TerminalBase = Terminal()
     argument_processor: ArgumentProcessorBase = ArgumentProcessor(argument_validator, password_generator, terminal)
 

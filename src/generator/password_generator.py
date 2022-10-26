@@ -1,45 +1,28 @@
-import random
+from generator.random_character_generator import RandomCharacterGeneratorBase
+from shuffler.string_shuffler_base import StringShufflerBase
 from src.generator.password_generator_base import PasswordGeneratorBase
 
 
 class PasswordGenerator(PasswordGeneratorBase):
-    __PASSWORD_LENGTH: int = 16
-    __UPPERCASE_CHARACTERS: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    __LOWERCASE_CHARACTERS: str = "abcdefghijklmnopqrstuvwxyz"
-    __DIGIT_CHARACTERS: str = "0123456789"
-    __SPECIAL_CHARACTERS: str = "~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?"
-    __UNION_OF_ALLOWED_CHARACTERS: str =\
-        __UPPERCASE_CHARACTERS +\
-        __LOWERCASE_CHARACTERS +\
-        __DIGIT_CHARACTERS +\
-        __SPECIAL_CHARACTERS
+    __password_length: int
+    __random_character_generator: RandomCharacterGeneratorBase = None
+    __string_shuffler: StringShufflerBase = None
+
+    def __init__(self,
+                 random_character_generator: RandomCharacterGeneratorBase,
+                 string_shuffler: StringShufflerBase) -> None:
+        self.__password_length = 16
+        self.__random_character_generator = random_character_generator
+        self.__string_shuffler = string_shuffler
 
     def generate(self) -> str:
         password: str = ''
+        password = password + self.__random_character_generator.generate_uppercase_character()
+        password = password + self.__random_character_generator.generate_lowercase_character()
+        password = password + self.__random_character_generator.generate_digit_character()
+        password = password + self.__random_character_generator.generate_special_character()
 
-        # generate at least one uppercase character
-        password = password + self.__get_random_character(self.__UPPERCASE_CHARACTERS)
+        for i in range(0, self.__password_length - 4):
+            password = password + self.__random_character_generator.generate_allowed_character()
 
-        # generate at least one lowercase character
-        password = password + self.__get_random_character(self.__LOWERCASE_CHARACTERS)
-
-        # generate at least one digit character
-        password = password + self.__get_random_character(self.__DIGIT_CHARACTERS)
-
-        # generate at least one special character
-        password = password + self.__get_random_character(self.__SPECIAL_CHARACTERS)
-
-        for i in range(4, self.__PASSWORD_LENGTH):
-            # generate random character from union of allowed characters
-            password = password + self.__get_random_character(self.__UNION_OF_ALLOWED_CHARACTERS)
-
-        # return shuffled generated characters
-        return self.__shuffle(password)
-
-    @staticmethod
-    def __get_random_character(characters: str) -> str:
-        return characters[random.randint(0, len(characters) - 1)]
-
-    @staticmethod
-    def __shuffle(characters: str) -> str:
-        return ''.join(random.sample(characters, len(characters)))
+        return self.__string_shuffler.shuffle(password)
