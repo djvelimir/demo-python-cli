@@ -8,7 +8,7 @@ class Program {
 }
 
 abstract class ArgumentValidatorBase {
-    + {abstract} validate(args: str[]): boolean
+    + {abstract} validate(args: str[]): bool
 }
 
 class ArgumentValidator {
