@@ -1,4 +1,5 @@
 @startuml class
+!theme amiga
 abstract class ProgramBase {
     + {abstract} start(args: str[])
 }
