@@ -1,4 +1,4 @@
-import random
+import secrets
 
 from generator.random_character_generator_base import RandomCharacterGeneratorBase
 
@@ -22,16 +22,16 @@ class RandomCharacterGenerator(RandomCharacterGeneratorBase):
             self.__special_characters
 
     def generate_uppercase_character(self) -> str:
-        return self.__uppercase_characters[random.randint(0, len(self.__uppercase_characters) - 1)]
+        return secrets.choice(self.__uppercase_characters)
 
     def generate_lowercase_character(self) -> str:
-        return self.__lowercase_characters[random.randint(0, len(self.__lowercase_characters) - 1)]
+        return secrets.choice(self.__lowercase_characters)
 
     def generate_digit_character(self) -> str:
-        return self.__digit_characters[random.randint(0, len(self.__digit_characters) - 1)]
+        return secrets.choice(self.__digit_characters)
 
     def generate_special_character(self) -> str:
-        return self.__special_characters[random.randint(0, len(self.__special_characters) - 1)]
+        return secrets.choice(self.__special_characters)
 
     def generate_allowed_character(self) -> str:
-        return self.__allowed_characters[random.randint(0, len(self.__allowed_characters) - 1)]
+        return secrets.choice(self.__allowed_characters)
