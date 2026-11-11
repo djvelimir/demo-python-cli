@@ -1,6 +1,6 @@
 import random
 
-from src.shuffler.string_shuffler_base import StringShufflerBase
+from shuffler.string_shuffler_base import StringShufflerBase
 
 
 class StringShuffler(StringShufflerBase):
