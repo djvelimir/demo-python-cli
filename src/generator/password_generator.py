@@ -1,6 +1,6 @@
-from generator.random_character_generator import RandomCharacterGeneratorBase
+from generator.random_character_generator_base import RandomCharacterGeneratorBase
 from shuffler.string_shuffler_base import StringShufflerBase
-from src.generator.password_generator_base import PasswordGeneratorBase
+from generator.password_generator_base import PasswordGeneratorBase
 
 
 class PasswordGenerator(PasswordGeneratorBase):

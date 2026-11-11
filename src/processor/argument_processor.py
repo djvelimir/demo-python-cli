@@ -1,7 +1,7 @@
-from src.display.terminal_base import TerminalBase
-from src.generator.password_generator_base import PasswordGeneratorBase
-from src.processor.argument_processor_base import ArgumentProcessorBase
-from src.validator.argument_validator_base import ArgumentValidatorBase
+from display.terminal_base import TerminalBase
+from generator.password_generator_base import PasswordGeneratorBase
+from processor.argument_processor_base import ArgumentProcessorBase
+from validator.argument_validator_base import ArgumentValidatorBase
 
 
 class ArgumentProcessor(ArgumentProcessorBase):
